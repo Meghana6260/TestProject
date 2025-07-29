@@ -14,6 +14,8 @@ public class swap_10 {
 		 System.out.println("After swapping: a = " + a + ", b = " + b);
 		 sc.close();
 		 }
-
-
+	}
 }
+
+
+

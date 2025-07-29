@@ -11,7 +11,7 @@ public class controlStatements {
 		}
 		else {
 			System.out.println("its a negavtive number");
-		}w
+		}
 		
 	}
 	
