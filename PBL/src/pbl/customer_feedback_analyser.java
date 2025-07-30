@@ -1,6 +1,5 @@
 package pbl;
 import java.util.*;
-import java.util.regex.*;
 public class customer_feedback_analyser {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -13,7 +12,7 @@ public class customer_feedback_analyser {
         }
 
         // ✅ 2️⃣ Clean and mask each feedback
-        System.out.println("\n📋 Cleaned & Masked Feedback:");
+        System.out.println("\n Cleaned & Masked Feedback:");
         List<String> cleanedList = new ArrayList<>();
         for (String fb : feedbackList) {
             String cleaned = fb.trim().replaceAll("[^a-zA-Z0-9@.\\s]", ""); // clean
