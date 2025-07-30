@@ -1,0 +1,48 @@
+package pbl;
+import java.util.*;
+public class customer_feedback_analyser {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<String> feedbackList = new ArrayList<>();
+
+       
+        for (int i = 1; i <= 3; i++) {
+            System.out.print("Enter feedback " + i + ": ");
+            feedbackList.add(sc.nextLine());
+        }
+
+        
+        System.out.println("\n📋 Cleaned & Masked Feedback:");
+        List<String> cleanedList = new ArrayList<>();
+        for (String fb : feedbackList) {
+            String cleaned = fb.trim().replaceAll("[^a-zA-Z0-9@.\\s]", ""); // clean
+            cleaned = cleaned.replaceAll("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", "[EMAIL]"); // mask email
+            cleaned = cleaned.replaceAll("\\b\\d{10}\\b", "[PHONE]"); // mask phone
+            cleanedList.add(cleaned);
+            System.out.println("- " + cleaned);
+        }
+
+       
+        System.out.print("\nEnter a keyword to count: ");
+        String keyword = sc.nextLine().toLowerCase();
+        int count = 0;
+        for (String fb : cleanedList) {
+            count += fb.toLowerCase().split("\\b" + keyword + "\\b", -1).length - 1;
+        }
+        System.out.println("The keyword '" + keyword + "' appeared " + count + " time(s).");
+
+        
+        int totalWords = 0;
+        for (String fb : cleanedList) {
+            if (!fb.trim().isEmpty()) {
+                totalWords += fb.trim().split("\\s+").length;
+            }
+        }
+        double avgWords = (double) totalWords / cleanedList.size();
+        System.out.println("\nTotal feedbacks: " + cleanedList.size());
+        System.out.println(" Average words per feedback: " + avgWords);
+
+        sc.close();
+    }
+}
+
