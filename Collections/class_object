@@ -1,0 +1,29 @@
+package pk3;
+import java.util.*;
+import java.util.stream.Collectors;
+class Employee{
+	int Empno;
+	String name;
+	int salary;
+	Employee(int Empno,String name,int salary){
+		this.Empno=Empno;
+		this.name=name;
+		this.salary=salary;
+	}
+}
+public class even_num {
+    public static void main(String[] args) {
+        List<Employee> al = new ArrayList<Employee>();
+        al.add(new Employee(100,"raj",900000));
+        al.add(new Employee(100,"sham",900000));
+        al.add(new Employee(100,"joye",900000));
+        al.add(new Employee(100,"shanu",900000));
+        List<Employee> bl = al.stream()
+                             .filter(emp->emp.salary>15000)
+                             .collect(Collectors.toList()); 
+        for(Employee employee:bl) {
+        System.out.println(employee.name);
+        
+    }
+}
+}
