@@ -1,0 +1,62 @@
+package pbl;
+import java.util.*;
+public class jumbledwords1{
+    public static String jumbledWords(String input1, int input2) {
+        String[] words = input1.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            String jumbled;
+            if (input2 == 1) {
+                jumbled = method1(word);
+            } else {
+                jumbled = method2(word);
+            }
+            result.append(jumbled).append(" ");
+        }
+        return result.toString().trim();
+    }
+
+   
+    private static String method1(String word) {
+        StringBuilder part1 = new StringBuilder();
+        StringBuilder part2 = new StringBuilder();
+
+        for (int i = 0; i < word.length(); i += 2) {
+            part1.append(word.charAt(i));
+        }
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            if (i % 2 != 0) { // even position in human terms
+                part2.append(word.charAt(i));
+            }
+        }
+
+        return part1.append(part2).toString();
+    }
+
+  
+    private static String method2(String word) {
+        StringBuilder part1 = new StringBuilder();
+        StringBuilder part2 = new StringBuilder();
+
+    
+        for (int i = 0; i < word.length(); i += 2) {
+            part1.append(word.charAt(i));
+        }
+
+      
+        for (int i = 1; i < word.length(); i += 2) {
+            part2.append(word.charAt(i));
+        }
+
+        return part1.append(part2).toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String sentence = sc.nextLine();
+        int method = sc.nextInt();
+        System.out.println(jumbledWords(sentence, method));
+    }
+}
